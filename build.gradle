@@ -1,0 +1,65 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+    id 'application'
+    id "org.openjfx.javafxplugin" version "0.0.10"
+    id 'edu.sc.seis.launch4j' version '2.5.1'
+}
+
+javafx {
+    version = "18-ea+2"
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+group = 'com.jajms'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    implementation 'org.openjfx:javafx-fxml:18-ea+2'
+    implementation 'org.openjfx:javafx-controls:18-ea+2'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt'
+    implementation 'net.java.dev.jna:jna:5.9.0'
+    implementation 'net.java.dev.jna:jna-platform:5.9.0'
+    implementation 'com.github.JnCrMx:discord-game-sdk4j:0.5.4'
+    implementation 'com.dustinredmond.fxtrayicon:FXTrayIcon:3.0.1'
+}
+
+createExe {
+    mainClassName = 'com.jajms.stepmania_rich_presence.SMRPApplicationKt'
+    outfile = "smrp.exe"
+    icon = "${projectDir}/src/main/resources/com/jajms/stepmania_rich_presence/stepmania.ico"
+    bundledJrePath = "dist"
+    bundledJre64Bit = true
+    bundledJreAsFallback = false
+    dontWrapJar = true
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.jajms.stepmania_rich_presence.SMRPApplicationKt'
+    }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+test {
+    useJUnit()
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+
+application {
+    mainClassName = 'com.jajms.stepmania_rich_presence.SMRPApplication'
+}

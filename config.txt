@@ -1,0 +1,2 @@
+setupDone=true
+stepmaniaPath=C:\\Games\\StepMania 5\\Program
