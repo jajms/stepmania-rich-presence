@@ -147,6 +147,7 @@ class SMRPApplication : Application() {
                     }
                 }
                 fileHandler.monitorFile(Path(stepmaniaPath).parent.toString() + "\\Themes\\Simply-Love-SM5-5.0.1\\richpresence.txt", 3000) { x ->
+                    currentStatus = x
                     if (!isRPCDisabled)
                         statusCallback(x)
                 }
@@ -155,7 +156,6 @@ class SMRPApplication : Application() {
     }
 
     fun statusCallback(status: String) {
-        currentStatus = status
         var details = status
         println(status)
         if (status == "")
