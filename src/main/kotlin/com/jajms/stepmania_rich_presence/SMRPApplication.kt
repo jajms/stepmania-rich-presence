@@ -145,9 +145,10 @@ class SMRPApplication : Application() {
                     Platform.runLater {
                         statusCallback("")
                     }
-                    fileHandler.monitorFile(Path(stepmaniaPath).parent.toString() + "\\Themes\\Simply-Love-SM5-5.0.1\\richpresence.txt", 3000) { x ->
+                }
+                fileHandler.monitorFile(Path(stepmaniaPath).parent.toString() + "\\Themes\\Simply-Love-SM5-5.0.1\\richpresence.txt", 3000) { x ->
+                    if (!isRPCDisabled)
                         statusCallback(x)
-                    }
                 }
             }
         }
@@ -167,7 +168,8 @@ class SMRPApplication : Application() {
 
     fun monitorRPCFile() {
         fileHandler.monitorFile(Path(stepmaniaPath).parent.toString() + "\\Themes\\Simply-Love-SM5-5.0.1\\richpresence.txt", 3000) { x ->
-            statusCallback(x)
+            if (!isRPCDisabled)
+                statusCallback(x)
         }
     }
 

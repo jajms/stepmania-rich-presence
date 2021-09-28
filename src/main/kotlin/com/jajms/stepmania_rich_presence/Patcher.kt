@@ -1,4 +1,5 @@
-import com.jajms.stepmania_rich_presence.elevate
+package com.jajms.stepmania_rich_presence
+
 import java.io.File
 import java.io.IOException
 import java.io.InputStream

@@ -18,7 +18,6 @@ class ApplicationController(a: SMRPApplication) {
             application.isRPCDisabled = false
             if (application.isProcessRunning) {
                 application.statusCallback(application.currentStatus)
-                application.monitorRPCFile()
             }
         }
         else {
