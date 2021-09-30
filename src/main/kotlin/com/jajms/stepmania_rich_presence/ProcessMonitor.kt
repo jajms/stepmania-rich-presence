@@ -9,7 +9,7 @@ class ProcessMonitor {
 
     fun monitorProcess(filter: String, waitTime: Long = 2000, cb: ((Boolean)->Unit)) {
         GlobalScope.launch {
-            cb.invoke(processStatus)
+            //cb.invoke(processStatus)
             while (true) {
                 if ((getProcessPath(filter) != "") == !processStatus) {
                     processStatus = !processStatus
